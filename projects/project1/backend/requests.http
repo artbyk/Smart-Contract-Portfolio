@@ -1,0 +1,12 @@
+### Send POST request with json body
+POST http://localhost:3000/mint
+Content-Type: application/json
+
+{
+  "to": "0x8c5e11d36c3b42d258eb2ddb493e00a6d041fb69",
+  "amount": 1000
+}
+
+
+### GET request with parameter
+GET http://localhost:3000/balanceOf?address=0x8c5e11d36c3b42d258eb2ddb493e00a6d041fb69
