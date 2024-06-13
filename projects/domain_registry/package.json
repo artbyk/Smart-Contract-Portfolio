@@ -1,0 +1,27 @@
+{
+  "name": "project2",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    
+  },
+  "scripts": {
+    "hardhat:node": "hardhat node",
+    "hardhat:compile": "hardhat compile",
+    "hardhat:deploy": "hardhat run scripts/deployDomainRegistry.js --network localhost",
+    "hardhat:test": "hardhat test test/deployDomainRegistry.test.js"
+  },
+  "keywords": [],
+  "author": "A",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.7",
+    "ethers": "^6.12.1"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.3"
+  }
+}

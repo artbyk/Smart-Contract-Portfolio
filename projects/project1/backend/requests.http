@@ -3,7 +3,7 @@ POST http://localhost:3000/mint
 Content-Type: application/json
 
 {
-  "to": "0x8c5e11d36c3b42d258eb2ddb493e00a6d041fb69",
+  "to": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
   "amount": 1000
 }
 
