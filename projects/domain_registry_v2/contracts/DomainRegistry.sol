@@ -1,27 +1,26 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
-contract DomainRegistry {
+contract DomainRegistry is Initializable, OwnableUpgradeable {
+    uint256[50] __gap;
+
     struct Domain {
         address domainOwner;
         bool isReserved;
         uint256 registrationDate;
     }
 
-    address public owner;
-    uint256 public CREATION_FEE = 1 ether;
+    uint256 public CREATION_FEE;
     uint256 public totalRegisteredDomains;
     mapping (string => Domain) public domains;
 
     event DomainRegistered(string domainName, address domainOwner, uint256 registrationDate, uint256 totalRegisteredDomains);
 
-    constructor() {
-        owner = msg.sender;
-    }
-
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Not owner");
-        _;
+    function initialize(address initialOwner) public initializer {
+        __Ownable_init(initialOwner);
+        setCreationFee(1 ether);
     }
 
     modifier requirePayment() {
