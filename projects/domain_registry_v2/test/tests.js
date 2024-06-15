@@ -7,7 +7,7 @@ describe("DomainRegistry", function () {
 
   beforeEach(async function () {
     DomainRegistryV1 = await ethers.getContractFactory("contracts/DomainRegistry.sol:DomainRegistry");
-    DomainRegistryV2 = await ethers.getContractFactory("contracts/DomainRegistry_v2.sol:DomainRegistry");
+    DomainRegistryV2 = await ethers.getContractFactory("contracts/DomainRegistryUpgradable.sol:DomainRegistry");
     [owner, addr1, addr2] = await ethers.getSigners();
 
     // Deploy the first version of the contract
