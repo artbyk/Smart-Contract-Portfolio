@@ -102,6 +102,29 @@ describe("DomainRegistry", function () {
 
       expect(actualDifference).to.equal(expectedDifference);
     });
+
+    it("Should allow the owner to change CREATION_FEE", async function () {
+      const newFee = ethers.parseEther("2.0");
+
+      // Change the creation fee as the owner
+      await domainRegistry.connect(owner).setCreationFee(newFee);
+
+      // Verify the fee was updated
+      const updatedFee = await domainRegistry.CREATION_FEE();
+      expect(updatedFee).to.equal(newFee);
+    });
+
+    it("Should not allow non-owner to change CREATION_FEE", async function () {
+      const newFee = ethers.parseEther("2.0");
+
+      // Attempt to change the creation fee as a non-owner
+      await expect(domainRegistry.connect(addr1).setCreationFee(newFee)).to.be.reverted;
+
+      // Verify the fee remains unchanged
+      const currentFee = await domainRegistry.CREATION_FEE();
+      expect(currentFee).to.not.equal(newFee);
+    });
+
   });
 
   describe("Storage Comparison", function () {

@@ -1,0 +1,2 @@
+## What I've learned
+Figured out how to call methods with web3js, because I used etherjs before. Figured out what an instance is. In general, I learned about ethernaut, this environment. It became very interesting to go through all the tasks.
