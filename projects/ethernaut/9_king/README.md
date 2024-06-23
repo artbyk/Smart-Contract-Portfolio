@@ -31,3 +31,10 @@ assert - to check for a logic error that should not be there, takes away the gas
 require - for user checking.
 But while reading about all this, I came across how to fulfill the previous task
 ![](selfdestruct_for_lvl7.png)
+
+## Updated
+It worked through the call.
+```
+payable(address(king)).call{value: msg.value}("");
+```
+Read the answers, I didn't get that it is possible to remove the receive from the contract and that's it.  
