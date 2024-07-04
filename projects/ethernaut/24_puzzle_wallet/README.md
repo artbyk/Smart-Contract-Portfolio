@@ -7,8 +7,6 @@ To do this, we need to call the execute function. We need to bypass depositCalle
 
 It was interesting to do via web3js
 
-Translated with DeepL.com (free version)
-
 ```
 const depositAbi = {
 "constant": false,
