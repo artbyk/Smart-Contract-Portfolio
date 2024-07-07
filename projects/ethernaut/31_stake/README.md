@@ -26,7 +26,7 @@ const MyContract = new web3.eth.Contract(abi, contract.address);
 await MyContract.methods.StakeETH().send({from:player, value: toWei("0.002")})
 await MyContract.methods.Unstake(toWei('0.002')).send({from:player})
 ```
-The next step is to approve and call StakeWETH
+The next step is to approve and call StakeWETH.
 ```
 function check()public payable {
         bytes memory data = abi.encodeWithSignature("allowance(address,address)","","");
