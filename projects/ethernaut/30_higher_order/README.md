@@ -1,6 +1,4 @@
 ## Description
-
-
 ```
 contract Attack{
     HigherOrder public higherOrder;
