@@ -1,0 +1,5 @@
+chainlink-brownie-contracts/**
+forge-std/**
+foundry-devops/**
+openzeppelin-contracts/**
+
