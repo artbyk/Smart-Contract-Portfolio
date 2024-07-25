@@ -93,7 +93,7 @@ if (msg.sender != s_owner) {
 -     * @param newPassword The new password to set.
 ```
 
-### [I-2] Initialization Timeframe Vulnerability
+### [L-2] Initialization Timeframe Vulnerability
 
 **Description:** The PasswordStore contract has a vulnerability during the initialization timeframe. Between contract deployment and the explicit call to `setPassword`, the password remains in its default state. Even after fixing this issue, the public nature of blockchain data means the password's visibility cannot be completely hidden.
 
